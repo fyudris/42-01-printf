@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_parse_format.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fyudris <fyudris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 23:03:34 by fyudris           #+#    #+#             */
-/*   Updated: 2024/12/16 02:18:00 by fyudris          ###   ########.fr       */
+/*   Created: 2024/12/16 00:14:12 by fyudris           #+#    #+#             */
+/*   Updated: 2024/12/16 02:17:30 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-/* Main Function */
-int	ft_printf(const char *format, ...)
+int	ft_parse_format(const char *format, va_list args, t_format *track_format)
 {
-	va_list		args;
-	char		*str_format;
-	t_format	track_format;
+	int	i;
+	int	spec_end; // Tracks where the current specifier ends in the format string.
 
+	i = 0;
+	while (format[i])
+	{
 
-
-	if (!format || *format == '\0')
-		return (0);
-	track_format = ft_new_track_format();
-	str_format = ft_strdup(format);
-
-	if(!str_format)
-		return (0);
-
-	va_start(args, format);
-
-	ft_parse_format(str_format, args, &track_format);
-	va_end(args);
-	free(str_format);
-	return(track_format.counter);
+		if (format[i] != '%')
+			track_format->counter += ft_putchar_fd(format[i],1);
+		i++;
+	}
+	return (track_format->counter);
 }
