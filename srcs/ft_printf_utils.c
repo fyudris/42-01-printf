@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 02:41:49 by fyudris           #+#    #+#             */
-/*   Updated: 2024/12/16 02:05:57 by fyudris          ###   ########.fr       */
+/*   Updated: 2024/12/16 14:10:04 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,17 @@ t_format	ft_new_track_format()
 	tracker.space = 0;
 	tracker.hashtag = 0;
 	return (tracker);
+}
+
+void	ft_reset_track_format(t_format *tracker)
+{
+	tracker->specifier = 0;
+	tracker->minus = 0;
+	tracker->plus = 0;
+	tracker->width = 0;
+	tracker->precision = -1;
+	tracker->zero = 0;
+	tracker->dot = 0;
+	tracker->space = 0;
+	tracker->hashtag = 0;
 }
