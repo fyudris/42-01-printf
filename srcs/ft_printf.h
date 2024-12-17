@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 23:51:20 by fyudris           #+#    #+#             */
-/*   Updated: 2024/12/16 14:07:37 by fyudris          ###   ########.fr       */
+/*   Updated: 2024/12/17 01:33:00 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,12 @@ int			ft_printf(const char *format, ...);
 /* Format Parser */
 int			ft_parse_format(const char *format, va_list args, t_format *track_format);
 
+
+
+
 /* Initialize and Reset t_format struct */
 t_format	ft_new_track_format();
-void	ft_reset_track_format(t_format *tracker);
+void	ft_reset_format_tracker(t_format *tracker);
 
 /* Helper Functions */
 int			ft_putchar_fd(char c, int fd);

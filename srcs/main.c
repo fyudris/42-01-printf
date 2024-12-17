@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 02:05:26 by fyudris           #+#    #+#             */
-/*   Updated: 2024/12/16 02:21:52 by fyudris          ###   ########.fr       */
+/*   Updated: 2024/12/17 02:01:27 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	main(void){
 
 	printf("\nExpected counter = %d\n", counter);
 	printf("\nMy counter = %d\n", mycounter);
+
+	// printf("\nTEST: |%d", 42);
 
 	// Expected output:
 	// |A    |Hello     |         0x102507f70|-0000042| 42|0x00ff|0X00FF|12345|%|
