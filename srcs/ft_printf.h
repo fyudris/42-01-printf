@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 23:51:20 by fyudris           #+#    #+#             */
-/*   Updated: 2024/12/17 01:33:00 by fyudris          ###   ########.fr       */
+/*   Updated: 2024/12/17 20:22:03 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdlib.h>
+# include <stdint.h>
 # include <stdio.h> // TODO: REMOVE
 
 /* Constants */
@@ -63,17 +64,29 @@ int			ft_printf(const char *format, ...);
 /* Format Parser */
 int			ft_parse_format(const char *format, va_list args, t_format *track_format);
 
-
+/* Printer Functions */
+int			ft_print_args(t_format *tracker, char specifier, va_list args);
+int			ft_print_char(t_format *f, int c);
+int			ft_print_str(t_format *f, char *str);
+int			ft_print_integer(t_format *f, int num);
+int			ft_print_unsigned(t_format *f, unsigned int num);
+int			ft_print_hex(t_format *f, unsigned int n, char specifier);
+int			ft_print_pointer(t_format *f, void *ptr);
+int			ft_print_percent(t_format *p);
 
 
 /* Initialize and Reset t_format struct */
 t_format	ft_new_track_format();
-void	ft_reset_format_tracker(t_format *tracker);
+void		ft_reset_format_tracker(t_format *tracker);
+int			ft_print_padding(int width, char pad_char);
 
 /* Helper Functions */
 int			ft_putchar_fd(char c, int fd);
+int			ft_putstr_fd(char *s, int fd);
 char		*ft_strchr(const char *str, int c);
 char		*ft_strdup(const char *s);
 size_t		ft_strlen(const char *s);
+char		*ft_utoa_base(unsigned int n, char *base);
+char		*ft_itoa(int n);
 
 #endif

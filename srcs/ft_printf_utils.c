@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 02:41:49 by fyudris           #+#    #+#             */
-/*   Updated: 2024/12/17 00:49:07 by fyudris          ###   ########.fr       */
+/*   Updated: 2024/12/17 20:13:23 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,18 @@
 int	ft_putchar_fd(char c, int fd)
 {
 	return ((int)write(fd, &c, 1));
+}
+
+int	ft_putstr_fd(char *s, int fd)
+{
+	int	count;
+	if (!s)
+		return (0);
+	count = 0;
+	while (s[count])
+		count++;
+	write(fd, s, count);
+	return (count);
 }
 
 char	*ft_strchr(const char *str, int c)
@@ -92,4 +104,15 @@ void	ft_reset_format_tracker(t_format *tracker)
 	tracker->dot = 0;
 	tracker->space = 0;
 	tracker->hashtag = 0;
+}
+
+/* Handles generic padding. */
+int	ft_print_padding (int width, char pad_char)
+{
+	int	counter;
+
+	counter = 0;
+	while (counter < width)
+		counter += ft_putchar_fd(pad_char, 1);
+	return (counter);
 }

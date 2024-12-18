@@ -6,13 +6,14 @@
 /*   By: fyudris <fyudris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 02:05:26 by fyudris           #+#    #+#             */
-/*   Updated: 2024/12/17 02:01:27 by fyudris          ###   ########.fr       */
+/*   Updated: 2024/12/17 20:35:43 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	main(void){
+int	main(void)
+{
 	char c = 'A';
 	char *s = "Hello";
 	void *p = (void *)s;
@@ -23,12 +24,10 @@ int	main(void){
 	int X = 255;
 
 	printf("Expected: \n");
-	int counter = printf("|%-5c|%-10s|%20p|%+08d|% i|%#06x|%#06X|%.5u|%%|\n",
-		c, s, p, d, i, x, X, u);
+	int counter = printf("|%-5c|%-10s|%20p|%+08d|% i|%#06x|%#06X|%.5u|%%|\n", c, s, p, d, i, x, X, u);
 
 	printf("\nResult: \n");
-	int mycounter = ft_printf("|%-5c|%-10s|%20p|%+08d|% i|%#06x|%#06X|%.5u|%%|\n",
-		c, s, p, d, i, x, X, u);
+	int mycounter = ft_printf("|%-5c|%-10s|%20p|%+08d|% i|%#06x|%#06X|%.5u|%%|\n", c, s, p, d, i, x, X, u);
 
 	printf("\nExpected counter = %d\n", counter);
 	printf("\nMy counter = %d\n", mycounter);

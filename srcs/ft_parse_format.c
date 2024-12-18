@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 00:14:12 by fyudris           #+#    #+#             */
-/*   Updated: 2024/12/17 02:02:54 by fyudris          ###   ########.fr       */
+/*   Updated: 2024/12/17 21:54:55 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ int	ft_parse_format(const char *format, va_list args, t_format *tracker)
 		if (format[i] == '%')
 		{
 			ft_reset_format_tracker(tracker);
-			ft_parse_specifier(format, tracker, i, args); // Parse specifier starting at `%`
+			i = ft_parse_specifier(format, tracker, i, args); // Parse specifier starting at `%`
+			if (tracker->specifier)
+				tracker->counter += ft_print_args(tracker, tracker->specifier, args);
 		}
 		else
 			tracker->counter += ft_putchar_fd(format[i],1);
@@ -43,18 +45,20 @@ int	ft_parse_format(const char *format, va_list args, t_format *tracker)
 /* Parse a single format specifier */
 static	int	ft_parse_specifier(const char *format, t_format *tracker, int i, va_list args)
 {
-	while (format[++i]) // Start parsing after `%`
+	while (format[i]) // Start parsing after `%`
 	{
-		if(ft_isflag(format[i]))
+		if(ft_isflag(format[i])){
 			ft_set_flag(format[i], tracker); // Handle flags
+			i++;
+		}
 		else if (ft_isdigit(format[i]) || format[i] == '*')
 			i = ft_parse_width(format, tracker, i, args);
 		else if (format[i] == '.')
-			i = ft_parse_precision(format, tracker, i, args);
+			i = ft_parse_precision(format, tracker, i + 1, args);
 		else if (ft_is_specifier(format[i]))
 		{
 			tracker->specifier = format[i];
-			break;
+			return (i + 1); // Move past the specifier and return
 		}
 		else
 			break;
