@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 19:54:21 by fyudris           #+#    #+#             */
-/*   Updated: 2024/12/18 23:46:24 by fyudris          ###   ########.fr       */
+/*   Updated: 2024/12/18 23:51:20 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	*get_hex_str(char specifier, unsigned int n);
 static int	ft_get_prefix_len(t_format *tracker, unsigned int num);
-static int	ft_print_hex_prefix(t_format *ftracker, unsigned int num, char specifier);
+static int	ft_print_hex_prefix(t_format *tracker, unsigned int num, char specifier);
 static int	ft_print_hex_right_padding(t_format *tracker, int len, int prefix_len);
 static int	ft_print_hex_precision_padding(int precision, int len);
 
@@ -39,7 +39,7 @@ int	ft_print_hex(t_format *tracker, unsigned int n, char specifier)
 	count += ft_print_hex_precision_padding(tracker->precision, len);
 	count += ft_putstr_fd(num_str, 1);
 	if (tracker->minus && tracker->width > (len + prefix_len))
-		count += ft_print_padding(f->width - len - prefix_len, ' ');
+		count += ft_print_padding(tracker->width - len - prefix_len, ' ');
 	free(num_str);
 	return (count);
 }

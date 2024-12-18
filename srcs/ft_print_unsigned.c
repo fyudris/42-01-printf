@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 20:01:29 by fyudris           #+#    #+#             */
-/*   Updated: 2024/12/18 23:48:26 by fyudris          ###   ########.fr       */
+/*   Updated: 2024/12/18 23:51:31 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_print_unsigned(t_format *tracker, unsigned int num)
 
 	counter = 0;
 	if (num == 0 && tracker->dot && tracker->precision == 0) // Edge case: Print only spaces if num==0
-		return (ft_print_padding(f->width, ' '));
+		return (ft_print_padding(tracker->width, ' '));
 	num_str = ft_utoa(num);
 	if (!num_str)
 		return (-1);

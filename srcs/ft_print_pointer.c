@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 19:44:41 by fyudris           #+#    #+#             */
-/*   Updated: 2024/12/18 23:47:29 by fyudris          ###   ########.fr       */
+/*   Updated: 2024/12/18 23:51:27 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int ft_print_pointer(t_format *tracker, void *ptr)
 		return (-1);
 	// Handle right padding
 	if (!tracker->minus && tracker->width > ((int)ft_strlen(hex_str) + 2))
-		count += ft_print_padding(f->width - ((int)ft_strlen(hex_str) + 2), ' ');
+		count += ft_print_padding(tracker->width - ((int)ft_strlen(hex_str) + 2), ' ');
 	// Print prefix
 	count += ft_putstr_fd("0x", 1);
 	// Print the hex string
