@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 23:51:20 by fyudris           #+#    #+#             */
-/*   Updated: 2024/12/17 20:22:03 by fyudris          ###   ########.fr       */
+/*   Updated: 2024/12/18 23:10:58 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,12 @@ typedef struct s_format {
 int			ft_printf(const char *format, ...);
 
 /* Format Parser */
-int			ft_parse_format(const char *format, va_list args, t_format *track_format);
+int			ft_parse_format(const char *format, va_list *args, t_format *track_format);
 
 /* Printer Functions */
-int			ft_print_args(t_format *tracker, char specifier, va_list args);
+int			ft_print_args(t_format *tracker, char specifier, va_list *args);
 int			ft_print_char(t_format *f, int c);
-int			ft_print_str(t_format *f, char *str);
+int			ft_print_str(t_format *f, const char *str);
 int			ft_print_integer(t_format *f, int num);
 int			ft_print_unsigned(t_format *f, unsigned int num);
 int			ft_print_hex(t_format *f, unsigned int n, char specifier);
@@ -88,5 +88,8 @@ char		*ft_strdup(const char *s);
 size_t		ft_strlen(const char *s);
 char		*ft_utoa_base(unsigned int n, char *base);
 char		*ft_itoa(int n);
+
+// TODO: Remove
+void ft_debug_format(const t_format *f);
 
 #endif

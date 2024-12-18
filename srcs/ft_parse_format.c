@@ -6,22 +6,21 @@
 /*   By: fyudris <fyudris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 00:14:12 by fyudris           #+#    #+#             */
-/*   Updated: 2024/12/17 21:54:55 by fyudris          ###   ########.fr       */
+/*   Updated: 2024/12/18 23:08:50 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_parse_flag(const char *format, t_format *tracker, int idx);
-static	int	ft_parse_specifier(const char *format, t_format *tracker, int i, va_list args);
+static	int	ft_parse_specifier(const char *format, t_format *tracker, int i);
 static int	ft_isflag(char c);
 static void	ft_set_flag(char c, t_format *tracker);
-static int	ft_parse_width(const char *format, t_format *tracker, int i, va_list args);
+static int	ft_parse_width(const char *format, t_format *tracker, int i);
 static int	ft_isdigit(char c);
-static int	ft_parse_precision(const char *format, t_format *tracker, int i, va_list args);
+static int	ft_parse_precision(const char *format, t_format *tracker, int i);
 static int	ft_is_specifier(char c);
 
-int	ft_parse_format(const char *format, va_list args, t_format *tracker)
+int	ft_parse_format(const char *format, va_list *args, t_format *tracker)
 {
 	int	i; // Index for transversing the format string
 
@@ -31,30 +30,33 @@ int	ft_parse_format(const char *format, va_list args, t_format *tracker)
 		if (format[i] == '%')
 		{
 			ft_reset_format_tracker(tracker);
-			i = ft_parse_specifier(format, tracker, i, args); // Parse specifier starting at `%`
+			i = ft_parse_specifier(format, tracker, i + 1); // Parse specifier starting after `%`
 			if (tracker->specifier)
 				tracker->counter += ft_print_args(tracker, tracker->specifier, args);
 		}
 		else
+		{
 			tracker->counter += ft_putchar_fd(format[i],1);
-		i++;
+			i++;
+		}
 	}
 	return (tracker->counter);
 }
 
 /* Parse a single format specifier */
-static	int	ft_parse_specifier(const char *format, t_format *tracker, int i, va_list args)
+static	int	ft_parse_specifier(const char *format, t_format *tracker, int i)
 {
 	while (format[i]) // Start parsing after `%`
 	{
+
 		if(ft_isflag(format[i])){
 			ft_set_flag(format[i], tracker); // Handle flags
 			i++;
 		}
 		else if (ft_isdigit(format[i]) || format[i] == '*')
-			i = ft_parse_width(format, tracker, i, args);
+			i = ft_parse_width(format, tracker, i);
 		else if (format[i] == '.')
-			i = ft_parse_precision(format, tracker, i + 1, args);
+			i = ft_parse_precision(format, tracker, i + 1);
 		else if (ft_is_specifier(format[i]))
 		{
 			tracker->specifier = format[i];
@@ -101,19 +103,19 @@ static void	ft_set_flag(char c, t_format *tracker)
 }
 
 /* Parse the width (also handles dynamic width with `*`) */
-static int	ft_parse_width(const char *format, t_format *tracker, int i, va_list args)
+static int	ft_parse_width(const char *format, t_format *tracker, int i)
 {
-	if (format[i] == '*')
-	{
-		tracker->width = va_arg(args, int);
-		if (tracker->width < 0)
-		{
-			tracker->minus = 1; // Negative width implies left alignment
-			tracker->zero = 0;
-			tracker->width = -tracker->width;
-		}
-		return (i + 1);
-	}
+	// if (format[i] == '*')
+	// {
+	// 	tracker->width = va_arg(args, int);
+	// 	if (tracker->width < 0)
+	// 	{
+	// 		tracker->minus = 1; // Negative width implies left alignment
+	// 		tracker->zero = 0;
+	// 		tracker->width = -tracker->width;
+	// 	}
+	// 	return (i + 1);
+	// }
 	while (ft_isdigit(format[i]))
 	{
 		tracker->width = tracker->width * 10 + (format[i] - '0');
@@ -127,18 +129,18 @@ static int	ft_isdigit(char c)
 	return (c >= '0' && c <= '9');
 }
 
-static int	ft_parse_precision(const char *format, t_format *tracker, int i, va_list args)
+static int	ft_parse_precision(const char *format, t_format *tracker, int i)
 {
 	tracker->dot = 1;
 	tracker->precision = 0;
 	i++;
-	if (format[i] == '*')
-	{
-		tracker->precision = va_arg(args, int);
-		if (tracker->precision < 0)
-			tracker->dot = 0; // Negative precision disables precision
-		return (i + 1);
-	}
+	// if (format[i] == '*')
+	// {
+	// 	tracker->precision = va_arg(args, int);
+	// 	if (tracker->precision < 0)
+	// 		tracker->dot = 0; // Negative precision disables precision
+	// 	return (i + 1);
+	// }
 	while (ft_isdigit(format[i]))
 	{
 		tracker->precision = tracker->precision * 10 + (format[i] - '0');

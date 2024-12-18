@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 19:53:10 by fyudris           #+#    #+#             */
-/*   Updated: 2024/12/17 19:53:31 by fyudris          ###   ########.fr       */
+/*   Updated: 2024/12/18 14:07:39 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@ int	ft_print_integer(t_format *f, int num)
 	num_str = ft_itoa(num);
 	if (!num)
 		return (-1);
+	counter = 0;
 	if (f->plus && num >= 0)
 		counter += ft_putchar_fd('+', 1);
 	else if (f->space && num >= 0)
 		counter += ft_putchar_fd(' ', 1);
-	while (counter < f ->width - ft_strlen(num_str)) //Padding
+	while (counter < f->width - (int) ft_strlen(num_str)) //Padding
 	{
 		if(f->zero && !f->dot)
 			counter += ft_putchar_fd('0', 1);

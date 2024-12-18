@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 23:03:34 by fyudris           #+#    #+#             */
-/*   Updated: 2024/12/16 13:55:28 by fyudris          ###   ########.fr       */
+/*   Updated: 2024/12/18 23:09:53 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ int	ft_printf(const char *format, ...)
 	track_format = ft_new_track_format();
 
 	str_format = ft_strdup(format);
+
 	if(!str_format)
 		return (0);
 
 	va_start(args, format);
-	ft_parse_format(str_format, args, &track_format);
+	ft_parse_format(format, &args, &track_format);
+
 	va_end(args);
 
 	free(str_format);

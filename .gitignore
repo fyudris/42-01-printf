@@ -9,6 +9,7 @@ tests/
 *.c.swp
 libft.a
 libprintf.a
+test_main
 
 # Prerequisites
 *.d

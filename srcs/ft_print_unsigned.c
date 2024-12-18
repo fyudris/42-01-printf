@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 20:01:29 by fyudris           #+#    #+#             */
-/*   Updated: 2024/12/17 20:10:30 by fyudris          ###   ########.fr       */
+/*   Updated: 2024/12/18 19:06:43 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	ft_print_unsigned(t_format *f, unsigned int num)
 	len = ft_strlen(num_str);
 	if (f->dot && f->precision > len)
 		counter += ft_print_padding(f->precision - len, '0');
-	if (!f->minus && f->width > len + counter && !f->dot)
+	if (!f->minus && f->width > len + counter)
 	{
-		if (f->zero)
+		if (f->zero && !f->dot)
 			counter += ft_print_padding(f->width - len - counter, '0');
 		else
 			counter += ft_print_padding(f->width - len - counter, ' ');
