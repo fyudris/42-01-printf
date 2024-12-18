@@ -6,7 +6,7 @@
 #    By: fyudris <fyudris@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 22:26:44 by fyudris           #+#    #+#              #
-#    Updated: 2024/12/18 19:50:42 by fyudris          ###   ########.fr        #
+#    Updated: 2024/12/18 23:34:27 by fyudris          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,9 @@ $(NAME): $(OBJS)
 
 # Test target (compile main.c with the library into an executable)
 test: $(NAME)
+	$(CC) $(CFLAGS) $(TEST_SRC) -o $(TEST_EXEC) $(NAME)
+
+bonus: $(NAME)
 	$(CC) $(CFLAGS) $(TEST_SRC) -o $(TEST_EXEC) $(NAME)
 
 # Clean up object files

@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 20:01:29 by fyudris           #+#    #+#             */
-/*   Updated: 2024/12/18 19:06:43 by fyudris          ###   ########.fr       */
+/*   Updated: 2024/12/18 23:48:26 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,31 @@
 
 static char	*ft_utoa(unsigned int num);
 
-int	ft_print_unsigned(t_format *f, unsigned int num)
+int	ft_print_unsigned(t_format *tracker, unsigned int num)
 {
 	int		counter;
 	char	*num_str;
 	int		len;
 
 	counter = 0;
-	if (num == 0 && f->dot && f->precision == 0) // Edge case: Print only spaces if num==0
+	if (num == 0 && tracker->dot && tracker->precision == 0) // Edge case: Print only spaces if num==0
 		return (ft_print_padding(f->width, ' '));
 	num_str = ft_utoa(num);
 	if (!num_str)
 		return (-1);
 	len = ft_strlen(num_str);
-	if (f->dot && f->precision > len)
-		counter += ft_print_padding(f->precision - len, '0');
-	if (!f->minus && f->width > len + counter)
+	if (tracker->dot && tracker->precision > len)
+		counter += ft_print_padding(tracker->precision - len, '0');
+	if (!tracker->minus && tracker->width > len + counter)
 	{
-		if (f->zero && !f->dot)
-			counter += ft_print_padding(f->width - len - counter, '0');
+		if (tracker->zero && !tracker->dot)
+			counter += ft_print_padding(tracker->width - len - counter, '0');
 		else
-			counter += ft_print_padding(f->width - len - counter, ' ');
+			counter += ft_print_padding(tracker->width - len - counter, ' ');
 	}
 	counter += ft_putstr_fd(num_str, 1);
-	if (f->minus && f->width > len + counter)
-		counter += ft_print_padding(f->width - len - counter, ' ');
+	if (tracker->minus && tracker->width > len + counter)
+		counter += ft_print_padding(tracker->width - len - counter, ' ');
 	free (num_str);
 	return (counter);
 }
