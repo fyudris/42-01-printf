@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 19:54:21 by fyudris           #+#    #+#             */
-/*   Updated: 2024/12/18 23:51:20 by fyudris          ###   ########.fr       */
+/*   Updated: 2024/12/19 20:57:52 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 static char	*get_hex_str(char specifier, unsigned int n);
 static int	ft_get_prefix_len(t_format *tracker, unsigned int num);
-static int	ft_print_hex_prefix(t_format *tracker, unsigned int num, char specifier);
-static int	ft_print_hex_right_padding(t_format *tracker, int len, int prefix_len);
+static int	ft_print_hex_prefix(t_format *tracker, unsigned int num,
+				char specifier);
+static int	ft_print_hex_right_padding(t_format *tracker, int len,
+				int prefix_len);
 static int	ft_print_hex_precision_padding(int precision, int len);
 
 int	ft_print_hex(t_format *tracker, unsigned int n, char specifier)
@@ -59,7 +61,6 @@ static int	ft_get_prefix_len(t_format *tracker, unsigned int num)
 	return (0);
 }
 
-
 static int	ft_print_hex_prefix(t_format *f, unsigned int num, char specifier)
 {
 	if (f->hashtag && num != 0)
@@ -72,7 +73,8 @@ static int	ft_print_hex_prefix(t_format *f, unsigned int num, char specifier)
 	return (0);
 }
 
-static int	ft_print_hex_right_padding(t_format *tracker, int len, int prefix_len)
+static int	ft_print_hex_right_padding(t_format *tracker, int len,
+	int prefix_len)
 {
 	int	counter;
 

@@ -6,13 +6,13 @@
 /*   By: fyudris <fyudris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 20:07:27 by fyudris           #+#    #+#             */
-/*   Updated: 2024/12/17 20:08:30 by fyudris          ###   ########.fr       */
+/*   Updated: 2024/12/19 20:56:40 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char *ft_utoa_base(unsigned int n, char *base)
+char	*ft_utoa_base(unsigned int n, char *base)
 {
 	char			*str;
 	int				len;
@@ -20,8 +20,11 @@ char *ft_utoa_base(unsigned int n, char *base)
 
 	temp = n;
 	len = 1;
-	while (temp /= 16)
+	while (temp >= 16)
+	{
+		temp /= 16;
 		len++;
+	}
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);

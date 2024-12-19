@@ -14,7 +14,7 @@
 
 int	ft_print_percent(t_format *tracker)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (tracker->minus)

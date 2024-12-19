@@ -6,7 +6,7 @@
 #    By: fyudris <fyudris@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 22:26:44 by fyudris           #+#    #+#              #
-#    Updated: 2024/12/18 23:34:27 by fyudris          ###   ########.fr        #
+#    Updated: 2024/12/19 20:41:33 by fyudris          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,8 @@ SRCS_FILES	=	ft_printf.c\
 
 SRCS		=	$(addprefix $(SRC_DIR)/, $(SRCS_FILES))
 
-TEST_SRC = srcs/main.c
-TEST_EXEC = test_main
+#TEST_SRC = srcs/main.c
+#TEST_EXEC = test_main
 
 # Header file
 HEADER		=	$(SRC_DIR)/ft_printf.h
@@ -53,11 +53,11 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Test target (compile main.c with the library into an executable)
-test: $(NAME)
-	$(CC) $(CFLAGS) $(TEST_SRC) -o $(TEST_EXEC) $(NAME)
+#test: $(NAME)
+#	$(CC) $(CFLAGS) $(TEST_SRC) -o $(TEST_EXEC) $(NAME)
 
-bonus: $(NAME)
-	$(CC) $(CFLAGS) $(TEST_SRC) -o $(TEST_EXEC) $(NAME)
+bonus: $(OBJS)
+	ar rcs $(NAME) $(OBJS)
 
 # Clean up object files
 clean:
@@ -65,7 +65,7 @@ clean:
 
 # Clean up everything, including the library
 fclean: clean
-	rm -f $(NAME) $(TEST_EXEC)
+	rm -f $(NAME)
 
 # Recompile everything from scratch
 re: fclean all

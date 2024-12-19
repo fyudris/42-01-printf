@@ -21,7 +21,7 @@ int	ft_print_unsigned(t_format *tracker, unsigned int num)
 	int		len;
 
 	counter = 0;
-	if (num == 0 && tracker->dot && tracker->precision == 0) // Edge case: Print only spaces if num==0
+	if (num == 0 && tracker->dot && tracker->precision == 0)
 		return (ft_print_padding(tracker->width, ' '));
 	num_str = ft_utoa(num);
 	if (!num_str)
@@ -51,8 +51,11 @@ static char	*ft_utoa(unsigned int num)
 
 	temp = num;
 	len = 1;
-	while (temp /= 10)
+	while (temp >= 10)
+	{
+		temp /= 10;
 		len++;
+	}
 	str = (char *) malloc ((len + 1) * sizeof(char));
 	if (!str)
 		return (NULL);

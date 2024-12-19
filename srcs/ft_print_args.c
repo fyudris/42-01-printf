@@ -6,24 +6,23 @@
 /*   By: fyudris <fyudris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 14:21:02 by fyudris           #+#    #+#             */
-/*   Updated: 2024/12/18 23:11:17 by fyudris          ###   ########.fr       */
+/*   Updated: 2024/12/19 20:57:24 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-/* Main function to dispatch the argument to the correct subfunction based on the specifier. */
-
+/* Main function to dispatch the argument to the correct subfunction based on 
+ * the specifier. */
 int	ft_print_args(t_format *tracker, char specifier, va_list *args)
 {
 	int	counter;
 
 	counter = 0;
 	if (specifier == 'c')
-		counter = ft_print_char(tracker, va_arg(*args, int)); // char is promotetd to int
+		counter = ft_print_char(tracker, va_arg(*args, int));
 	else if (specifier == 's')
 	{
-		// va_arg(*args,char *);
 		counter = ft_print_str(tracker, va_arg(*args, const char *));
 	}
 	else if (specifier == 'd' || specifier == 'i')
@@ -40,10 +39,3 @@ int	ft_print_args(t_format *tracker, char specifier, va_list *args)
 		return (-1);
 	return (counter);
 }
-
-
-
-
-
-
-
