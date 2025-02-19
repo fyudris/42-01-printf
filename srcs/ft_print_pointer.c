@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 16:37:59 by fyudris           #+#    #+#             */
-/*   Updated: 2025/02/19 16:54:36 by fyudris          ###   ########.fr       */
+/*   Updated: 2025/02/19 18:56:45 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_print_pointer(void *ptr)
 
 	address = (unsigned long long)ptr;
 	if (address == 0)
-		return (write(1, "0x0", 3));
+		return (write(1, "(nil)", 5));
 	count = write(1, "0x", 2);
 	count += ft_print_hex(address, HEX_LOWER);
 	return (count);

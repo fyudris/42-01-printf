@@ -6,19 +6,14 @@
 /*   By: fyudris <fyudris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 17:18:24 by fyudris           #+#    #+#             */
-/*   Updated: 2025/02/19 17:42:46 by fyudris          ###   ########.fr       */
+/*   Updated: 2025/02/19 18:59:01 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-
-int	main (void)
+int	main(void)
 {
-	// const char *str = "Hello %s";
-
-	ft_printf("Hello %s","World");
-
+	ft_printf(" %p %p ", 0, 0);
 	return (0);
-
 }

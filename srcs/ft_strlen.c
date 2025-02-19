@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 16:19:14 by fyudris           #+#    #+#             */
-/*   Updated: 2025/02/19 17:59:41 by fyudris          ###   ########.fr       */
+/*   Updated: 2025/02/19 18:43:13 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_strlen(const char *str)
 	size_t	i;
 
 	i = 0;
-	while (str)
+	while (*str)
 	{
 		i++;
 		str++;

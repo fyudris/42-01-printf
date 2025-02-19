@@ -3,7 +3,8 @@
 .DS_Store
 a.out
 *.gch
-
+build
+libftprintf.a
 # Prerequisites
 *.d
 
@@ -24,7 +25,7 @@ a.out
 
 # Libraries
 *.lib
-# *.a
+*.a
 *.la
 *.lo
 

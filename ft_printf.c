@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 23:03:34 by fyudris           #+#    #+#             */
-/*   Updated: 2025/02/19 18:22:11 by fyudris          ###   ########.fr       */
+/*   Updated: 2025/02/19 18:45:23 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,12 @@
  */
 int	ft_handle_format(char specifier, va_list args)
 {
-	// write(1, "OMGWUT", 6);
-	printf("Specifier %c\n", specifier);
-
-	if (specifier == 's')
-		printf("TRUE");
-	else
-		printf("FALSE");
-
 	if (specifier == '%')
 		return (ft_print_char('%'));
 	else if (specifier == 'c')
 		return (ft_print_char((char)va_arg(args, int)));
 	else if (specifier == 's')
-	{
-		printf("PRINTING S");
 		return (ft_print_str(va_arg(args, char *)));
-	}
 	else if (specifier == 'p')
 		return (ft_print_pointer(va_arg(args, void *)));
 	else if (specifier == 'd' || specifier == 'i')
@@ -74,7 +63,6 @@ int	ft_printf(const char *format, ...)
 		{
 			format++;
 			count += ft_handle_format(*(format), args);
-			printf("Count: %i\n",count);
 			format++;
 		}
 		else
